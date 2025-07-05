@@ -2,6 +2,7 @@ import classes from "./index.module.css";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { useAuth } from "../../store/AuthProvider";
+import { Link } from "react-router-dom";
 
 function LogIn() {
   const [authUser, setAuthUser] = useAuth();
@@ -13,7 +14,7 @@ function LogIn() {
       password: data.password
     };
     await axios
-      .post("http://localhost:5002/user/login", userInfo)
+      .post("/user/login", userInfo)
       .then((response) => {
         console.log("Logged in successfully", response.data);
         if(response.data) {
@@ -49,7 +50,7 @@ function LogIn() {
           />
           <button type="submit" className={classes.button}>Log In</button>
         </form>
-        <p>Don't have an account? <a href="/">Sign Up</a></p>
+        <p>Don't have an account? <Link to={"/signup"}>Sign Up</Link></p>
       </div>
     </div>
   );

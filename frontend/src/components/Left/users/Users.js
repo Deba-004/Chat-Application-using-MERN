@@ -1,12 +1,8 @@
 import classes from "./index.module.css";
-
-const users = [
-  { id: 1, name: "Alice", email: "alice@email.com" },
-  { id: 2, name: "Deba", email: "deba@email.com"},
-  { id: 3, name: "Rahul", email: "rahul@email.com" },
-];
+import useGetAllUsers from "../../../store/getAllUsers";
 
 function User({name, email}) {
+  
   return (
     <div className={classes.user}>
       <div className={classes.avatar}>{name[0]}</div>
@@ -19,31 +15,14 @@ function User({name, email}) {
 }
 
 function Users() {
+  const [allUsers, loading] = useGetAllUsers();
+  const users = allUsers || [];
+
   return (
     <div className={classes.container}>
       {users.map((user) => {
         return (
-          <User key={user.id} name={user.name} email={user.email} />
-        );
-      })}
-      {users.map((user) => {
-        return (
-          <User key={user.id} name={user.name} email={user.email} />
-        );
-      })}
-      {users.map((user) => {
-        return (
-          <User key={user.id} name={user.name} email={user.email} />
-        );
-      })}
-      {users.map((user) => {
-        return (
-          <User key={user.id} name={user.name} email={user.email} />
-        );
-      })}
-      {users.map((user) => {
-        return (
-          <User key={user.id} name={user.name} email={user.email} />
+          <User key={user._id} name={user.fullName} email={user.email} />
         );
       })}
     </div>

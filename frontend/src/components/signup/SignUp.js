@@ -2,6 +2,7 @@ import classes from "./index.module.css";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { useAuth } from "../../store/AuthProvider";
+import { Link } from "react-router-dom";
 
 function SignUp() {
   const [authUser, setAuthUser] = useAuth();
@@ -14,7 +15,7 @@ function SignUp() {
       confirmPassword: data.confirmPassword
     };
     await axios
-      .post("http://localhost:5002/user/signup", userInfo)
+      .post("/user/signup", userInfo)
       .then((response) => {
         console.log("User registered successfully", response.data);
         if(response.data) {
@@ -72,7 +73,7 @@ function SignUp() {
           {errors.confirmPassword && <span className="text-red-500 text-sm">Password do not match</span>}
           <button type="submit" className={classes.button}>Sign Up</button>
         </form>
-        <p>Already have an account? <a href="/">Log In</a></p>
+        <p>Already have an account? <Link to={"/login"}>Log In</Link></p>
       </div>
     </div>
   );
