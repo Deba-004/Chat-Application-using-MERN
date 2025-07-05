@@ -2,11 +2,13 @@ import express from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import userRoute from "./route/user.route.js";
+import cors from "cors";
 
 const app = express();
 dotenv.config({ path: "./.env" });
 
 app.use(express.json());
+app.use(cors());
 
 const PORT = process.env.PORT || 5001;
 const URI = process.env.MONGODB_URI;
