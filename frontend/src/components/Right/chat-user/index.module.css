@@ -1,0 +1,15 @@
+.conatainer {
+    @apply flex items-center gap-2 p-4 bg-slate-950;
+}
+
+.avatar {
+    @apply w-10 h-10 rounded-[50%] bg-slate-800 flex justify-center items-center;
+}
+
+.name {
+    @apply font-bold;
+}
+
+.online {
+    @apply text-[12px];
+}

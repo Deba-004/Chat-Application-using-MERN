@@ -1,0 +1,7 @@
+.container {
+    @apply flex items-center justify-between mt-2 mx-2;
+}
+
+.logoutBtn {
+    @apply text-[14px] p-2 rounded-lg bg-slate-800 text-white hover:bg-slate-600 duration-300;
+}

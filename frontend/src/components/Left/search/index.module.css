@@ -1,0 +1,20 @@
+.container {
+    @apply text-white mt-4;
+}
+
+.searchForm {
+    @apply flex items-center justify-center gap-4;
+}
+
+.searchInput {
+    @apply w-[80%] py-2 px-4 text-[16px] rounded-[20px] outline-none border border-gray-700 bg-slate-800;
+}
+
+.searchBtn {
+    @apply text-white;
+    scale: 1.4;
+}
+
+.searchBtn:hover {
+    scale: 1.5;
+}

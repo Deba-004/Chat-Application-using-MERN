@@ -1,0 +1,57 @@
+.container {
+    height: 100vh;
+    color: white;
+    background-color: #282831;
+    font-family: 'Segoe UI', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.subContainer {
+    width: 320px;
+    background-color: #1e1e2f;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    text-align: center;
+    border-radius: 10px;
+    padding: 30px 25px;
+}
+
+.form {
+    @apply flex flex-col gap-4;
+}
+
+.input {
+    @apply py-[10px] px-[12px] text-[16px] rounded-[6px] bg-[#2a2a40] text-white;
+    font-size: 16px;
+    border: 1px solid #444;
+    outline-color: #0099ff;
+}
+
+.button {
+  padding: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  background-color: #0099ff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.button:hover {
+  background-color: #007acc;
+}
+
+p {
+  margin-top: 15px;
+  font-size: 14px;
+  color: #bbb;
+}
+
+p a {
+  color: #0099ff;
+  text-decoration: none;
+  font-weight: 500;
+}
