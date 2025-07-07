@@ -10,6 +10,16 @@
     @apply w-10 h-10 rounded-[50%] bg-slate-800 flex justify-center items-center;
 }
 
+.online {
+    @apply relative;
+}
+
+.online::after {
+    content: '';
+    @apply absolute top-0 right-0 w-2 h-2 bg-[#00ff5e] rounded-full;
+}
+
+
 .name {
     @apply font-bold;
 }

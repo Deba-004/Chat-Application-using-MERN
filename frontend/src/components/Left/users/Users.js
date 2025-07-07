@@ -1,10 +1,13 @@
 import classes from "./index.module.css";
 import useGetAllUsers from "../../../store/getAllUsers";
 import useConversation from "../../../states/useConversation.js";
+import { useSocket } from "../../../store/Socket-context.js";
 
 function User({user}) {
   const {selectedConversation, setSelectedConversation} = useConversation();
+  const {onlineUsers} = useSocket();
   const isSelected = selectedConversation?._id === user._id;
+  const isOnline = onlineUsers?.includes(user._id);
 
   function handleSelect() {
     setSelectedConversation(user);
@@ -12,7 +15,7 @@ function User({user}) {
   
   return (
     <div className={classes.user} onClick={handleSelect} style={{backgroundColor: isSelected ? "#475569" : ""}}>
-      <div className={classes.avatar}>{user.fullName[0]}</div>
+      <div className={`${classes.avatar} ${isOnline ? classes.online : ""}`}>{user.fullName[0]}</div>
       <div>
         <div className={classes.name}>{user.fullName}</div>
         <div className={classes.email}>{user.email}</div>
