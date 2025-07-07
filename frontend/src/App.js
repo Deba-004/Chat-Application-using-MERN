@@ -4,6 +4,7 @@ import Right from "./components/Right/Right";
 import SignUp from "./components/signup/SignUp";
 import { Navigate, Route, Routes } from "react-router-dom";
 import { useAuth } from "./store/AuthProvider";
+// import Loading from "./components/loading/Loading";
 
 function App() {
   const [authUser, setAuthUser] = useAuth();
@@ -33,6 +34,7 @@ function App() {
           element={authUser ? <Navigate to={"/"} /> : <LogIn />}
         />
       </Routes>
+      {/* <Loading /> */}
     </>
   );
 }

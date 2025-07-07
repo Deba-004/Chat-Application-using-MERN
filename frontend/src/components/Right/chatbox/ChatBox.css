@@ -30,12 +30,13 @@
 }
 
 .chat-start .chat-bubble {
-  background-color: #f1f0f0;
+  background-color: rgb(24 27 39);
+  color: white;
   border-bottom-left-radius: 0;
 }
 
 .chat-end .chat-bubble {
-  background-color: rgb(24 27 39);
+  background-color: rgb(0, 106, 244);
   color: white;
   border-bottom-right-radius: 0;
 }

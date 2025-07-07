@@ -1,21 +1,17 @@
 import classes from "./index.module.css";
-import {useState} from "react";
 import {TbLogout} from "react-icons/tb";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 
 function LeftHeader() {
-  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  function handleLogOut() {
-    setLoading(true);
+  async function handleLogOut() {
     try {
-      const response = axios.post("/user/logout");
+      await axios.post("/user/logout");
       localStorage.removeItem("userInfo");
       Cookies.remove("jwt");
-      setLoading(false);
       alert("Logged out successfully");
       navigate("/login", { replace: true });
     } catch (error) {

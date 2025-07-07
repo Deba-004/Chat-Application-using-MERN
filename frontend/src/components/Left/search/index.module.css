@@ -17,4 +17,5 @@
 
 .searchBtn:hover {
     scale: 1.5;
+    transition-duration: 300ms;
 }

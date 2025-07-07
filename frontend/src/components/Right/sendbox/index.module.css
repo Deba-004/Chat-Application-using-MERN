@@ -18,4 +18,5 @@
 
 .sendBtn:hover {
     color: rgb(206, 206, 206);
+    transition-duration: 300ms;
 }

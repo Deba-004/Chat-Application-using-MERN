@@ -1,35 +1,54 @@
+import useGetMessages from "../../../store/getMessages.js";
 import "./ChatBox.css";
+import Loading from "../../loading/Loading.js";
+import { useEffect, useRef } from "react";
 
-function Chat() {
+function Chat({ message }) {
+  const authUser = JSON.parse(localStorage.getItem("userInfo"));
+  const isOwnMessage = message.senderId === authUser?.user?._id;
+
   return (
     <div>
-      <div className="chat chat-start">
-        <div className="chat-bubble">
-          It's over Anakin,
-          <br />
-          I have the high ground.
-        </div>
-      </div>
-      <div className="chat chat-end">
-        <div className="chat-bubble">You underestimate my power!</div>
+      <div className={`chat ${isOwnMessage ? "chat-end" : "chat-start"}`}>
+        <div className="chat-bubble">{message.message}</div>
       </div>
     </div>
   );
 }
 
 function ChatBox() {
+  const { loading, messages } = useGetMessages();
+  const authUser = JSON.parse(localStorage.getItem("userInfo"));
+
+  const messagesEndRef = useRef(null);
+  useEffect(() => {
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [messages]);
+
+  if(!authUser) {
+    return (
+      <div className="chat-box-container">
+        <div className="text-white text-center mt-[20%] text-[18px] font-bold">
+          Please log in to see messages.
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="chat-box-container">
-      <Chat />
-      <Chat />
-      <Chat />
-      <Chat />
-      <Chat />
-      <Chat />
-      <Chat />
-      <Chat />
-      <Chat />
-      <Chat />
+      {loading ? (
+        <div className="mt-[120px]"><Loading /></div>
+      ) : (
+      messages.length > 0 &&
+      messages.map((message) => (
+        <Chat key={message._id} message={message} />
+      ))
+      )}
+      {!loading && messages.length === 0 && <div className="text-white text-center mt-[20%] text-[18px] font-bold">Say Hi!!</div>}
+      <div ref={messagesEndRef} />
     </div>
   );
 }
