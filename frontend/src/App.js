@@ -4,10 +4,10 @@ import Right from "./components/Right/Right";
 import SignUp from "./components/signup/SignUp";
 import { Navigate, Route, Routes } from "react-router-dom";
 import { useAuth } from "./store/AuthProvider";
-// import Loading from "./components/loading/Loading";
+import { Toaster } from "react-hot-toast";
 
 function App() {
-  const [authUser, setAuthUser] = useAuth();
+  const [authUser] = useAuth();
 
   return (
     <>
@@ -34,7 +34,7 @@ function App() {
           element={authUser ? <Navigate to={"/"} /> : <LogIn />}
         />
       </Routes>
-      {/* <Loading /> */}
+      <Toaster />
     </>
   );
 }

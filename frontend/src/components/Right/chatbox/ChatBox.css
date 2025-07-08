@@ -27,6 +27,18 @@
   line-height: 1.4;
   position: relative;
   font-family: sans-serif;
+  display: flex;
+  flex-direction: column;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: pre-wrap;
+}
+
+.chat-bubble .chat-timestamp {
+  font-size: 0.7rem;
+  color: #ccc;
+  margin-top: 2px;
+  align-self: flex-end;
 }
 
 .chat-start .chat-bubble {

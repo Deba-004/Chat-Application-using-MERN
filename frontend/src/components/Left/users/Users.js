@@ -15,7 +15,7 @@ function User({user}) {
   
   return (
     <div className={classes.user} onClick={handleSelect} style={{backgroundColor: isSelected ? "#475569" : ""}}>
-      <div className={`${classes.avatar} ${isOnline ? classes.online : ""}`}>{user.fullName[0]}</div>
+      <div className={`${classes.avatar} ${isOnline ? classes.online : ""}`}>{user?.fullName[0] || ""}</div>
       <div>
         <div className={classes.name}>{user.fullName}</div>
         <div className={classes.email}>{user.email}</div>
@@ -24,13 +24,18 @@ function User({user}) {
   );
 }
 
-function Users() {
+function Users({searchInput}) {
   const [allUsers] = useGetAllUsers();
   const users = allUsers || [];
 
+  const filteredUsers = searchInput.trim()
+    ? users.filter((user) => 
+      user.fullName.toLowerCase().includes(searchInput.toLowerCase())
+    ) : users;
+
   return (
     <div className={classes.container}>
-      {users.map((user) => {
+      {filteredUsers.map((user) => {
         return (
           <User key={user._id} user={user} />
         );

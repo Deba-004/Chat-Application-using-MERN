@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import { useAuth } from "../../store/AuthProvider";
 import { Link } from "react-router-dom";
+import toast from "react-hot-toast";
 
 function SignUp() {
   const [authUser, setAuthUser] = useAuth();
@@ -19,7 +20,7 @@ function SignUp() {
       .then((response) => {
         console.log("User registered successfully", response.data);
         if(response.data) {
-          alert("User registered successfully");
+          toast.success("User registered successfully");
         }
         localStorage.setItem("userInfo", JSON.stringify(response.data));
         setAuthUser(response.data);
@@ -27,7 +28,7 @@ function SignUp() {
       .catch((error) => {
         console.error("Error registering user", error);
         if(error) {
-          alert("Error registering user: " + error.response.data.message);
+          toast.error("Error registering user: " + error.response.data.message);
         }
       });
   };

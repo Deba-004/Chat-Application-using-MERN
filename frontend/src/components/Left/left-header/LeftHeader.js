@@ -3,6 +3,7 @@ import {TbLogout} from "react-icons/tb";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 function LeftHeader() {
   const navigate = useNavigate();
@@ -12,11 +13,11 @@ function LeftHeader() {
       await axios.post("/user/logout");
       localStorage.removeItem("userInfo");
       Cookies.remove("jwt");
-      alert("Logged out successfully");
+      toast.success("Logged out successfully");
       navigate("/login", { replace: true });
     } catch (error) {
       console.error("Error logging out:", error);
-      alert("Error logging out: " + error.message);
+      toast.error("Error logging out: " + error.message);
     }
   }
 

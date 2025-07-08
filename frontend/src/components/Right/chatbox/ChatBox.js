@@ -2,15 +2,24 @@ import useGetMessages from "../../../store/getMessages.js";
 import "./ChatBox.css";
 import Loading from "../../loading/Loading.js";
 import { useEffect, useRef } from "react";
+import useGetSocketMessages from "../../../store/getSocketMessages.js";
 
 function Chat({ message }) {
   const authUser = JSON.parse(localStorage.getItem("userInfo"));
   const isOwnMessage = message.senderId === authUser?.user?._id;
+  const createdAt = new Date(message.createdAt);
+  const formattedTime = createdAt.toLocaleTimeString([], {
+    hour: '2-digit',
+    minute: '2-digit'
+  });
 
   return (
     <div>
       <div className={`chat ${isOwnMessage ? "chat-end" : "chat-start"}`}>
-        <div className="chat-bubble">{message.message}</div>
+        <div className="chat-bubble">
+          <div>{message.message}</div>
+          <span className="chat-timestamp">{formattedTime}</span>
+        </div>
       </div>
     </div>
   );
@@ -19,6 +28,8 @@ function Chat({ message }) {
 function ChatBox() {
   const { loading, messages } = useGetMessages();
   const authUser = JSON.parse(localStorage.getItem("userInfo"));
+
+  useGetSocketMessages();
 
   const messagesEndRef = useRef(null);
   useEffect(() => {
