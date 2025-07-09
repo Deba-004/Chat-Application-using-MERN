@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import Cookies from 'js-cookie';
 import axios from 'axios';
 
 function useGetAllUsers() {
@@ -10,12 +9,9 @@ function useGetAllUsers() {
         const fetchUsers = async () => {
             try {
                 setLoading(true);
-                const token = Cookies.get("jwt");
-                const response = await axios.get("/user/getUser", {
-                    Credentials: "include",
-                    headers: {
-                        Authorization: `Bearer ${token}`
-                    }
+                const backendUrl = process.env.REACT_APP_BACKEND_URL || "http://localhost:5002";
+                const response = await axios.get(`${backendUrl}/user/getUser`, {
+                    withCredentials: true,
                 });
                 setAllUsers(response.data);
                 setLoading(false);
