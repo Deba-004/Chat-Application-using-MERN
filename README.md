@@ -275,8 +275,8 @@ This project is licensed under the ISC License - see the [LICENSE](LICENSE) file
 
 ## 👨‍💻 Author
 
-**Deba_04**
-- GitHub: [@your-github-username](https://github.com/your-github-username)
+**Debasish Sarkar**
+- GitHub: https://github.com/Deba-004
 
 ## 🙏 Acknowledgments
 
