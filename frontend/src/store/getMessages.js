@@ -11,7 +11,10 @@ function useGetMessages() {
       setLoading(true);
       if(selectedConversation && selectedConversation._id) {
         try {
-          const response = await axios.get(`/message/get/${selectedConversation._id}`);
+          const backendUrl = process.env.REACT_APP_BACKEND_URL || "http://localhost:5002";
+          const response = await axios.get(`${backendUrl}/message/get/${selectedConversation._id}`, {
+            withCredentials: true
+          });
           setMessages(response.data);
           setLoading(false);
         } catch (error) {

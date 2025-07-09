@@ -10,7 +10,7 @@ const generateTokenAndSaveCookie = (userId, res) => {
     res.cookie("jwt", token, {
         httpOnly: true, // Helps prevent XSS attacks
         secure: isProduction, // Use secure cookies in production
-        sameSite: isProduction ? "strict" : "lax", // Helps prevent CSRF attacks
+        sameSite: isProduction ? "none" : "lax", // Helps prevent CSRF attacks
         maxAge: 5 * 24 * 60 * 60 * 1000 // Cookie expiration time (5 days)
     });
 };

@@ -9,7 +9,10 @@ function useSendMessages() {
         setLoading(true);
         if(selectedConversation && selectedConversation._id) {
             try {
-                const response = await axios.post(`/message/send/${selectedConversation._id}`, {message});
+                const backendUrl = process.env.REACT_APP_BACKEND_URL || "http://localhost:5002";
+                const response = await axios.post(`${backendUrl}/message/send/${selectedConversation._id}`, {message}, {
+                    withCredentials: true
+                });
                 setMessages([...messages, response.data]);
                 setLoading(false);
             } catch (error) {
