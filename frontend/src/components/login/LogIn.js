@@ -14,8 +14,11 @@ function LogIn() {
       email: data.email,
       password: data.password
     };
+    const backendUrl = process.env.REACT_APP_BACKEND_URL || "http://localhost:5002";
     await axios
-      .post("/user/login", userInfo)
+      .post(`${backendUrl}/user/login`, userInfo, {
+        withCredentials: true
+      })
       .then((response) => {
         console.log("Logged in successfully", response.data);
         if(response.data) {

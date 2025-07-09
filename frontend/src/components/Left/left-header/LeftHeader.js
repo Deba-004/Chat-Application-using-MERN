@@ -10,7 +10,10 @@ function LeftHeader() {
 
   async function handleLogOut() {
     try {
-      await axios.post("/user/logout");
+      const backendUrl = process.env.REACT_APP_BACKEND_URL || "http://localhost:5002";
+      await axios.post(`${backendUrl}/user/logout`, {}, {
+        withCredentials: true
+      });
       localStorage.removeItem("userInfo");
       Cookies.remove("jwt");
       toast.success("Logged out successfully");

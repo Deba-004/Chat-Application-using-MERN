@@ -15,8 +15,11 @@ function SignUp() {
       password: data.password,
       confirmPassword: data.confirmPassword
     };
+    const backendUrl = process.env.REACT_APP_BACKEND_URL || "http://localhost:5002";
     await axios
-      .post("/user/signup", userInfo)
+      .post(`${backendUrl}/user/signup`, userInfo,{
+        withCredentials: true,
+      })
       .then((response) => {
         console.log("User registered successfully", response.data);
         if(response.data) {

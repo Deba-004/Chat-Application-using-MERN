@@ -11,10 +11,10 @@ export const SocketProvider = ({ children }) => {
 
   useEffect(() => {
     if(authUser) {
-      const socket = io("http://localhost:5002/", {
-        query: {
-          userId: authUser.user._id,
-        }
+      const socket = io(process.env.REACT_APP_BACKEND_URL, {
+        query: { userId: authUser.user._id },
+        transports: ["websocket"],
+        withCredentials: true
       });
       setSocket(socket);
 
