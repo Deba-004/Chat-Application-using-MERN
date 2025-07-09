@@ -1,7 +1,7 @@
 function LiveChat() {
     return (
-        <div>
-            <h3 className="text-2xl font-bold text-center mt-4 hover:text-gray-200">Live Chat</h3>
+        <div className="bg-gray-800">
+            <h3 className="font-bold text-center hover:text-gray-200 my-2">Live Chat</h3>
         </div>
     );
 }
