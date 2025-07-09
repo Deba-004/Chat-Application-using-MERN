@@ -3,6 +3,7 @@ import classes from "./index.module.css";
 import LeftHeader from "./left-header/LeftHeader";
 import Search from "./search/Search";
 import Users from "./users/Users";
+import LiveChat from "./live-chat/LiveChat";
 
 function Left() {
     const [searchInput, setSearchInput] = useState("");
@@ -12,6 +13,7 @@ function Left() {
             <LeftHeader />
             <Search searchInput={searchInput} setSearchInput={setSearchInput} />
             <Users searchInput={searchInput} />
+            <LiveChat />
         </div>
     );
 }
