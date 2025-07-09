@@ -5,11 +5,14 @@ const generateTokenAndSaveCookie = (userId, res) => {
         expiresIn: "5d"
     });
 
+    const isProduction = process.env.NODE_ENV === "production";
+
     res.cookie("jwt", token, {
         httpOnly: true, // Helps prevent XSS attacks
-        secure: true,
-        sameSite: "strict", // Helps prevent CSRF attacks
+        secure: isProduction, // Use secure cookies in production
+        sameSite: isProduction ? "strict" : "lax", // Helps prevent CSRF attacks
+        maxAge: 5 * 24 * 60 * 60 * 1000 // Cookie expiration time (5 days)
     });
-}
+};
 
 export default generateTokenAndSaveCookie;
